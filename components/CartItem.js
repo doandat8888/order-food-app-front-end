@@ -41,7 +41,7 @@ const CartItem = (props) => {
     })
 
     return (
-        <View style={{flexDirection: 'row', paddingVertical: 20, paddingHorizontal: 40}}>
+        <View style={{flexDirection: 'row', paddingVertical: 20}}>
             <Image style={{width: 100, height: 100}} source={{uri: food.img}}/>
             <View style={{marginLeft: 20, flex: 1}}>
                 <Text style={{fontSize: 16, flex: 1}}>{food.name}</Text>

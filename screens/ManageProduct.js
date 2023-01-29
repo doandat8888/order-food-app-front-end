@@ -26,6 +26,7 @@ const ManageProduct = (props) => {
     const [productImgAdd, setProductImgAdd] = useState('');
     const [productSocialsAdd, setProductSocialsAdd] = useState('');
     const [productDesAdd, setProductDesAdd] = useState('');
+    const [productQuantityAdd, setProductQuantityAdd] = useState(0);
     const [typeAdd, setTypeAdd] = useState('');
     const [typeArr, setTypeArr] = useState([]);
     const [messageEditProduct, setMessagEditProduct] = useState('');
@@ -114,7 +115,7 @@ const ManageProduct = (props) => {
     const onAddProduct = async () => {
         let count = 0;
        
-        let infoArr = [productNameAdd, productPriceAdd, statusAdd, productImgAdd, productSocialsAdd, productDesAdd, typeAdd]
+        let infoArr = [productNameAdd, productPriceAdd, statusAdd, productImgAdd, productSocialsAdd, productDesAdd, typeAdd, productQuantityAdd]
         for(let i = 0; i < infoArr.length; i++) {
             if(infoArr[i] === '') {
                 count++;
@@ -131,6 +132,7 @@ const ManageProduct = (props) => {
                     id: foods.length + 1,
                     name: productNameAdd,
                     price: productPriceAdd,
+                    quantity: productQuantityAdd,
                     status: statusAdd,
                     type: typeAdd,
                     img: productImgAdd,
@@ -255,6 +257,10 @@ const ManageProduct = (props) => {
                             <View style={{marginBottom: 10}}>
                                 <Text style={{marginBottom: 6}}>Price</Text>
                                 <TextInput placeholder="Enter product's price" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setProductPriceAdd(text)} value={productPriceAdd}/>
+                            </View>
+                            <View style={{marginBottom: 10}}>
+                                <Text style={{marginBottom: 6}}>Quantity</Text>
+                                <TextInput placeholder="Enter product's quantity" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setProductQuantityAdd(text)} value={productQuantityAdd}/>
                             </View>
                             <View style={{marginBottom: 10}}>
                                 <Text style={{fontSize: 14, color: '#636363', marginBottom: 4}}>Status</Text>

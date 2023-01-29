@@ -20,14 +20,14 @@ const Cart = (props) => {
         <View style={{paddingVertical: 20, flex: 1}}>
             <HeaderSub iconLeft={images.arrowLeft} title={'Cart'} onNavigate={() => props.navigation.navigate('Main')}/>
             
-            <ScrollView>
+            <ScrollView style={{paddingVertical: 20, paddingHorizontal: 40}}>
                 {data.length > 0 ? 
                     <CartList data={data}/>
                 : <Text>No foods in your cart</Text>}
             </ScrollView>
             <View style={{backgroundColor: '#FAFAFA', position: 'relative', bottom: 0, borderTopColor: '#DADADA', borderTopWidth: 1, paddingVertical: 20, alignItems: 'center', justifyContent: 'space-around', flexDirection: 'row'}}>
                 <Text style={{fontSize: 20}}>Total: <Text style={{color: colors.mainColor}}>${totalMoney}</Text></Text>
-                <TouchableOpacity style={{width: '50%', height: 60, backgroundColor: 'red', borderRadius: 20, alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity style={{width: '50%', height: 60, backgroundColor: 'red', borderRadius: 20, alignItems: 'center', justifyContent: 'center'}} onPress={() => props.navigation.navigate('Checkout')}>
                     <Text style={{fontSize: 20, color: '#FAFAFA'}}>CHECK OUT</Text>
                 </TouchableOpacity>
             </View>

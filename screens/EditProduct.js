@@ -16,6 +16,7 @@ const EditProduct = (props) => {
     const [statusAdd, setStatusAdd] = useState('');
     const [productNameAdd, setProductNameAdd] = useState('');
     const [productPriceAdd, setProductPriceAdd] = useState(0);
+    const [productQuantityAdd, setProductQuantityAdd] = useState(0);
     const [productImgAdd, setProductImgAdd] = useState('');
     const [productSocialsAdd, setProductSocialsAdd] = useState('');
     const [productDesAdd, setProductDesAdd] = useState('');
@@ -76,7 +77,7 @@ const EditProduct = (props) => {
         try {
             let response = await axios.get(`http://192.168.1.187:3000/api/v1/get-detail-food?id=${idProduct}`);
             if(response && response.data.errCode === 0) {
-                let {name, price, status, type, img, socials, description} = response.data.data;
+                let {name, price, status, type, img, socials, description, quantity} = response.data.data;
                 setProductNameAdd(name);
                 setProductPriceAdd(price);
                 setStatusAdd(status);
@@ -84,6 +85,7 @@ const EditProduct = (props) => {
                 setProductImgAdd(img);
                 setProductSocialsAdd(socials);
                 setProductDesAdd(description);
+                setProductQuantityAdd(quantity);
             }
         } catch (error) {
             console.log(error);
@@ -121,6 +123,7 @@ const EditProduct = (props) => {
                     id: idProduct,
                     name: productNameAdd,
                     price: productPriceAdd,
+                    quantity: productQuantityAdd,
                     status: statusAdd,
                     type: typeAdd,
                     img: productImgAdd,
@@ -158,6 +161,10 @@ const EditProduct = (props) => {
                 <View style={{marginBottom: 10}}>
                     <Text style={{marginBottom: 6}}>Price</Text>
                     <TextInput placeholder="Enter product's price" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setProductPriceAdd(text)} value={productPriceAdd.toString()}/>
+                </View>
+                <View style={{marginBottom: 10}}>
+                    <Text style={{marginBottom: 6}}>Quantity</Text>
+                    <TextInput placeholder="Enter product's quantity" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setProductPriceAdd(text)} value={productQuantityAdd.toString()}/>
                 </View>
                 <View style={{marginBottom: 10}}>
                     <Text style={{fontSize: 14, color: '#636363', marginBottom: 4}}>Status</Text>

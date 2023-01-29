@@ -9,6 +9,8 @@ import Cart from "./Cart";
 import EditProduct from "./EditProduct";
 import EditCategory from "./EditCategory";
 import UserInfo from "./UserInfo";
+import Checkout from "./Checkout";
+
 export {
     WelcomeScreen,
     Login,
@@ -20,5 +22,6 @@ export {
     Cart,
     EditProduct,
     EditCategory,
-    UserInfo
+    UserInfo,
+    Checkout
 }
