@@ -164,7 +164,7 @@ const EditProduct = (props) => {
                 </View>
                 <View style={{marginBottom: 10}}>
                     <Text style={{marginBottom: 6}}>Quantity</Text>
-                    <TextInput placeholder="Enter product's quantity" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setProductPriceAdd(text)} value={productQuantityAdd.toString()}/>
+                    <TextInput placeholder="Enter product's quantity" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setProductQuantityAdd(text)} value={productQuantityAdd.toString()}/>
                 </View>
                 <View style={{marginBottom: 10}}>
                     <Text style={{fontSize: 14, color: '#636363', marginBottom: 4}}>Status</Text>

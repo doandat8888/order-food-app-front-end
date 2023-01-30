@@ -20,6 +20,7 @@ const Checkout = (props) => {
     const [address, setAddress] = useState('');
     const [shippingFee, setShippingFee] = useState(2);
     const [orderList, setOrderList] = useState([]);
+    const [email, setEmail] = useState('');
     //const [idOrder, setIdOrder] = useState(0);
 
     const getAllOrder = async() => {
@@ -48,6 +49,7 @@ const Checkout = (props) => {
                     id: idOrder,
                     fullName: fullName,
                     phoneNumber: phoneNumber,
+                    email: email,
                     address: address,
                     total: totalMoney + shippingFee
                 });
@@ -94,6 +96,18 @@ const Checkout = (props) => {
                     if(countDetailOrder === data.length) {
                         alert('Add new detail order successfully')
                     }
+
+                    let responseSendEmail = await axios.post('http://192.168.1.187:3000/api/v1/send-email', {
+                        email: email,
+                        data: data,
+                        total: totalMoney + shippingFee,
+                        fullName: fullName,
+                        address: address,
+
+                    })
+                    if(responseSendEmail && responseSendEmail.data && responseSendEmail.data.errCode === 0) {
+                        alert('Send email successfully')
+                    }
                 }
             }
             
@@ -119,6 +133,10 @@ const Checkout = (props) => {
                 <View style={{marginBottom: 10}}>
                     <Text style={{marginBottom: 6}}>Phone number</Text>
                     <TextInput placeholder="Enter the recipient's phone number" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setPhoneNumber(text)} value={phoneNumber}/>
+                </View>
+                <View style={{marginBottom: 10}}>
+                    <Text style={{marginBottom: 6}}>Email</Text>
+                    <TextInput placeholder="Enter the recipient's email" style={{borderWidth: 0.5, paddingHorizontal: 20, paddingVertical: 10, borderRadius: 10}} onChangeText={(text) => setEmail(text)} value={email}/>
                 </View>
                 <View style={{marginBottom: 10}}>
                     <Text style={{marginBottom: 6}}>Address</Text>
