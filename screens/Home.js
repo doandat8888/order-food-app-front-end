@@ -48,7 +48,9 @@ const Home = (props) => {
 
     const onPressCategoryItemHome = (categoryName, type) => {
         if(type === 'navigate') {
-            alert('Navigate');
+            props.navigation.navigate('ProductByType', {
+                categoryName: categoryName,
+            })
         }
     }
 
@@ -58,6 +60,12 @@ const Home = (props) => {
 
     const gotoCart = () => {
         props.navigation.navigate('Cart');
+    }
+
+    const onPressCategoryHomeItem = (categoryName) => {
+        if(categoryName === 'Liked') {
+            props.navigation.navigate('Liked');
+        }
     }
 
     
@@ -70,11 +78,10 @@ const Home = (props) => {
                 <View
                     style={{
                         height: 80,
-                        
                         marginBottom: 20
                     }}
                 >
-                    <CategoryHomeList></CategoryHomeList>
+                    <CategoryHomeList onPressCategoryHomeItem={onPressCategoryHomeItem}></CategoryHomeList>
                 </View>
                 <View
                     style={{
@@ -109,6 +116,17 @@ const Home = (props) => {
                     <Text style={{marginHorizontal: 20, color: colors.mainColor, marginBottom: 20, fontSize: 20}}>Hot combo</Text>
                     <HotComboList></HotComboList>
                 </View>
+                <View   
+                    style={{
+                    height: 260,
+                    borderBottomColor: colors.gray,
+                    borderBottomWidth: 1,
+                    marginBottom: 20
+                }}>
+                        <Text style={{marginHorizontal: 20, color: colors.mainColor, marginBottom: 20, fontSize: 20}}>For today's meal</Text>
+                        <BestSellerList onPressProductItem={viewDetailProduct} foods={foods && foods.length > 0 ? foods : ''}></BestSellerList>
+                </View>
+                
             </ScrollView>
         </View>
         

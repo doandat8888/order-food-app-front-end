@@ -39,14 +39,7 @@ const AdminPage = (props) => {
     const route = useRoute();
     const idUser = route && route.params && route.params.userId ? route.params.userId : '';
     const msg = route && route.params && route.params.msg ? route.params.msg : '';
-    const [messageEditProduct, setMessagEditProduct] = useState('');
-
-    const setMessage = () => {
-        if(msg !== '') {
-            setMessagEditProduct(msg)
-        }
-    }
-    
+    const [msgEdit, setMsgEdit] = useState('');
 
     const onEditProduct = (idProduct) => {
         props.navigation.navigate('EditProduct', {
@@ -60,18 +53,19 @@ const AdminPage = (props) => {
         })
     }
 
+    if(msg !== '') {
+        alert("Message: " + msg);
+    }
+
     useEffect(() => {
-        setMessage();
-        if(messageEditProduct) {
-            alert(messageEditProduct);
-        }
-    }, [messageEditProduct])
+        
+    }, [])
 
     return (
         <Tab.Navigator 
             screenOptions={screenOptions}
         >
-        <Tab.Screen name={"Foods"} children={() => <ManageProduct idUser={idUser} onEditProduct={onEditProduct} msg={messageEditProduct}/>}/>
+        <Tab.Screen name={"Foods"} children={() => <ManageProduct idUser={idUser} onEditProduct={onEditProduct} msg={msg}/>}/>
         <Tab.Screen name={"Categories"} children={() => <ManageProductCategory idUser={idUser} onEditCategory={onEditCategory}/>}/>
     </Tab.Navigator>
     )

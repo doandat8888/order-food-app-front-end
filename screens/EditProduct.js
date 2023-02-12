@@ -132,9 +132,9 @@ const EditProduct = (props) => {
                     statusFood: 1
                 });
                 if(response && response.data && response.data.errCode === 0) {
-                    alert("Update food successfully");
+                    alert('Update food successfully')
                     props.navigation.navigate('Admin', {
-                        msg: 'Edit food successfully'
+                        msg: 'Update food successfully',
                     });
                 }else {
                     alert("Update food failed");
@@ -148,7 +148,7 @@ const EditProduct = (props) => {
         getAllType();
         getDetailFood();
         getAllFood();
-    }, [])
+    }, [food])
 
     return (
         <ScrollView>

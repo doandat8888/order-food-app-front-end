@@ -15,7 +15,7 @@ const CategoryHomeList = (props) => {
     }
 
     const onPress = (categoryName) => {
-        props.onPress(categoryName);
+        props.onPressCategoryHomeItem(categoryName);
     }
 
     const [categoryList, setCategoryList] = useState([
@@ -60,7 +60,7 @@ const CategoryHomeList = (props) => {
             data={categoryList}
             keyExtractor={category => category.name}
             renderItem={category => {
-                return <CategoryHomeItem categoryName={category.item.text} source={category.item.source}></CategoryHomeItem>
+                return <CategoryHomeItem onPress={() => onPress(category.item.text)} categoryName={category.item.text} source={category.item.source}></CategoryHomeItem>
             }}
         >
         </FlatList>

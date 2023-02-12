@@ -3,10 +3,11 @@ import { useRoute } from "@react-navigation/native";
 import { foodList } from "../constants";
 import { useEffect, useState } from "react";
 import { colors, images } from "../constants";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { addItems } from "../reducers/cartItems";
 import axios from "axios";
 import Foods from "./Foods";
+import { addLikeItems, removeLikeItem } from "../reducers/likeItems";
 
 const DetailProduct = (props) => {
     const dispatch = useDispatch();
@@ -18,6 +19,9 @@ const DetailProduct = (props) => {
     const [quantity, setQuantity] = useState(1);
     const [total, setTotal] = useState(0);
     const [foodInfo, setFoodInfo] = useState({});
+    const [liked, setLiked] = useState(false);
+    const data = useSelector(item => item.likeItems.value);
+    const foodLiked = data.find((likeItem) => likeItem.foodInfo.id === foodInfo.id);
 
     const getDetailFood = async() => {
         try {
@@ -54,6 +58,19 @@ const DetailProduct = (props) => {
         props.navigation.navigate('Main');
     }
 
+    const onLikeFood = () => {
+        setLiked(!liked);
+        if(liked === true) {
+            dispatch(removeLikeItem({
+                foodInfo: foodInfo,
+            }))
+        }else if(liked === false) {
+            dispatch(addLikeItems({
+                foodInfo: foodInfo,
+            }))
+        }
+    }
+
     useEffect(() => {
         getDetailFood();
         if(food && food.name !== '') {
@@ -62,8 +79,14 @@ const DetailProduct = (props) => {
         if(quantity < 1) {
             setQuantity(1)
         }
+        if(foodLiked && foodLiked.name !== '') {
+            setLiked(true);
+        }
+        if(liked === false) {
+            
+        }
         setTotal(foodInfo.price * quantity);
-    }, [food])
+    }, [food, idProduct])
 
     return (
         <View style={{flex: 1}}>
@@ -73,8 +96,12 @@ const DetailProduct = (props) => {
             
             <Image source={{uri: foodInfo.img}} style={{width: '100%', height: 300}}/>
             <View style={{paddingHorizontal: 20, borderBottomColor: '#DADADA', borderBottomWidth: 1}}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 20, width: '100%'}}>
+                <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 20, width: '100%', alignItems: 'center'}}>
                     <Text style={{fontSize: 24, fontWeight: 'bold'}}>{foodInfo.name}</Text>
+                    <TouchableOpacity onPress={onLikeFood}>
+                        <Image style={{width: 20, height: 20, tintColor: liked === true ? 'red' : 'black'}} source={images.heartIcon}/>
+                    </TouchableOpacity>
+                    
                 </View>
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20}}>
                     <Text style={{color: colors.mainColor, fontSize: 32}}>$ {foodInfo.price}</Text>

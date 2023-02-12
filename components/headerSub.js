@@ -14,6 +14,7 @@ const HeaderSub = (props) => {
                 borderBottomColor: colors.gray,
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginTop: 20
             }}
         >
             {iconLeft ? 

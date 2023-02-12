@@ -15,11 +15,10 @@ const Cart = (props) => {
         // const carts = props.cartItems;
         // setCartFoods(carts)
         setTotalMoney(data.reduce((accumulator, item) => accumulator + (item.quantity * item.foodInfo.price), 0));
-    })
+    }, [data])
     return (
-        <View style={{paddingVertical: 20, flex: 1}}>
+        <View style={{paddingBottom: 20, flex: 1}}>
             <HeaderSub iconLeft={images.arrowLeft} title={'Cart'} onNavigate={() => props.navigation.navigate('Main')}/>
-            
             <ScrollView style={{paddingVertical: 20, paddingHorizontal: 40}}>
                 {data.length > 0 ? 
                     <CartList data={data}/>

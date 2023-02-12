@@ -120,9 +120,9 @@ const Checkout = (props) => {
         // setCartFoods(carts)
         setTotalMoney(data.reduce((accumulator, item) => accumulator + (item.quantity * item.foodInfo.price), 0));
         getAllOrder();
-    }, [])
+    }, [data]);
     return (
-        <ScrollView style={{paddingVertical: 20, flex: 1}}>
+        <ScrollView style={{paddingBottom: 20, flex: 1}}>
             <HeaderSub iconLeft={images.arrowLeft} title={'Check out'} onNavigate={() => props.navigation.navigate('Cart')}/>
             <View style={{ padding: 20}}>
                 <Text style={{fontSize: 16, color: colors.mainColor, marginBottom: 20, fontWeight: 'bold'}}>Recipient's info</Text>

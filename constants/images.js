@@ -63,4 +63,5 @@ export default {
     userEmma: require('../assets/img/user-emma.jpg'),
     editIcon: require('../assets/img/edit-icon.png'),
     plusIcon: require('../assets/img/plus-icon.png'),
+    heartIcon: require('../assets/img/heart-icon.png'),
 }

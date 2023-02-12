@@ -2,7 +2,7 @@ import axios from 'axios';
 import _ from 'lodash';
 
 const instance = axios.create({
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://192.168.1.187:3000',
     withCredentials: false,
     headers: {
         'Access-Control-Allow-Origin' : '*',

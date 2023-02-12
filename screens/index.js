@@ -10,6 +10,8 @@ import EditProduct from "./EditProduct";
 import EditCategory from "./EditCategory";
 import UserInfo from "./UserInfo";
 import Checkout from "./Checkout";
+import Liked from "./Liked";
+import ProductByType from "./ProductByType";
 
 export {
     WelcomeScreen,
@@ -23,5 +25,7 @@ export {
     EditProduct,
     EditCategory,
     UserInfo,
-    Checkout
+    Checkout,
+    Liked,
+    ProductByType
 }

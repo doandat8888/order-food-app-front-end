@@ -18,6 +18,8 @@ import {EditCategory} from './screens';
 import store from './store';
 import {UserInfo} from './screens';
 import { Checkout } from './screens';
+import { Liked } from './screens';
+import { ProductByType } from './screens';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,6 +41,8 @@ export default function App() {
                 <Stack.Screen name='UserInfo' component={UserInfo} />
                 <Stack.Screen name='EditCategory' component={EditCategory} />
                 <Stack.Screen name='Checkout' component={Checkout} />
+                <Stack.Screen name='Liked' component={Liked} />
+                <Stack.Screen name='ProductByType' component={ProductByType} />
             </Stack.Navigator>
         </NavigationContainer>
     </Provider>

@@ -12,9 +12,10 @@ import { useNavigation } from "@react-navigation/native";
 
 const ManageProduct = (props) => {
     const route = useRoute();
+    //const {foods} = props;
     //const idUser = route && route.params && route.params.userId ? route.params.userId : '';
     const navigation = useNavigation();
-    const {idUser, msg} = props;
+    let {idUser, msg} = props;
     const [user, setUser] = useState({});
     const [foods, setFoods] = useState([]);
     const [types, setTypes] = useState([]);
@@ -54,20 +55,18 @@ const ManageProduct = (props) => {
             setMessagEditProduct(msg)
         }
     }
+
     
-    const refreshFood = () => {
-        if(messageEditProduct !== '') {
-            getAllFood();
-        }
-    }
 
     useEffect(() => {
         getUserInfo();
         getAllFood();
         getAllType();
-        setMessage();
-        //refreshFood();
-    }, [msg])
+        //setMessage();
+        if(msg !== '') {
+            alert("Message 1: " + msg)
+        }
+    }, []);
 
     const getUserInfo = async() => {
         let response = await axios.get(`http://192.168.1.187:3000/api/v1/get-user-by-id?id=${idUser}`);
@@ -86,6 +85,7 @@ const ManageProduct = (props) => {
             console.log(error);
         }
     }
+
 
     const getAllType = async() => {
         try {
@@ -166,6 +166,7 @@ const ManageProduct = (props) => {
 
     const onEditProduct = (idProduct) => {
         props.onEditProduct(idProduct);
+        getAllFood();
     }
 
     const onDeleteProduct = async(idProduct) => {
